@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qemam_task/Core/Error/api_failures.dart';
-import 'package:qemam_task/Features/data/Repo/video_repo.dart';
+import 'package:qemam_task/Features/Broadcast/Repo/video_repo.dart';
 import 'package:qemam_task/Features/Broadcast/model/video_data_model.dart';
 import 'package:qemam_task/Features/Broadcast/model/video_model.dart';
 import 'package:video_player/video_player.dart';

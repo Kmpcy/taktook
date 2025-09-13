@@ -2,7 +2,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:qemam_task/Core/Error/api_failures.dart';
 import 'package:qemam_task/Core/api/api_services.dart';
-import 'package:qemam_task/Features/data/Repo/video_repo.dart';
+import 'package:qemam_task/Features/Broadcast/Repo/video_repo.dart';
 import 'package:qemam_task/Features/Broadcast/model/video_data_model.dart';
 
 class VideoRepoImpl implements VideoRepo {
