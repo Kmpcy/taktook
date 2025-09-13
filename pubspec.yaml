@@ -32,7 +32,10 @@ dependencies:
   video_player: ^2.9.1
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
+  overlay_support: ^2.1.0
   dio: ^5.9.0
+  just_audio: ^0.9.36
+  just_audio_background: ^0.0.1-beta.17
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qemam_task/Core/api/api_services.dart';
 import 'package:qemam_task/Features/Broadcast/view/broadcast_view.dart';
+import 'package:qemam_task/Features/Broadcast/view_model/broadcast%20cubit/broadcast_cubit.dart';
 import 'package:qemam_task/Features/Videos/Repo/video_repo_impl.dart';
 import 'package:qemam_task/Features/Videos/view/videos_view.dart';
 import 'package:qemam_task/Features/Videos/view_model/videos_cubit/videos_cubit.dart';
@@ -29,7 +30,10 @@ class _HomeViewState extends State<HomeView> {
                 VideosCubit(VideoRepoImpl(ApiService(Dio())))..loadVideos(),
             child: VideosPage(),
           ),
-          const BroadcastView(),
+          BlocProvider(
+            create: (context) => BroadcastCubit(),
+            child: BroadcastPage(),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
