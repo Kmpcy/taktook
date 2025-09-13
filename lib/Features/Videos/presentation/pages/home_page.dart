@@ -1,13 +1,12 @@
-import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
+ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qemam_task/Core/api/api_services.dart';
-import 'package:qemam_task/Features/Broadcast/view/broadcast_view.dart';
-import 'package:qemam_task/Features/Broadcast/view_model/broadcast%20cubit/broadcast_cubit.dart';
-import 'package:qemam_task/Features/Videos/Repo/video_repo_impl.dart';
-import 'package:qemam_task/Features/Videos/view/videos_view.dart';
-import 'package:qemam_task/Features/Videos/view_model/videos_cubit/videos_cubit.dart';
+import 'package:qemam_task/Features/Broadcast/presentation/pages/broadcast_page.dart';
+import 'package:qemam_task/Features/Broadcast/presentation/broadcast%20cubit/broadcast_cubit.dart';
+import 'package:qemam_task/Features/Videos/domain/video_repo_impl.dart';
+import 'package:qemam_task/Features/Videos/presentation/pages/videos_page.dart';
+import 'package:qemam_task/Features/Videos/presentation/videos_cubit/videos_cubit.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -42,11 +41,11 @@ class _HomeViewState extends State<HomeView> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.video_collection),
-            label: "Videos",
+            label: "Reels",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.podcasts),
-            label: "Broadcast",
+            label: "Broadcasts",
           ),
         ],
       ),

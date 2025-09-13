@@ -1,11 +1,10 @@
 import 'package:just_audio/just_audio.dart';
-import 'package:qemam_task/Features/Broadcast/model/broadcast_model.dart';
+import 'package:qemam_task/Features/Broadcast/domain/entities/broadcast.dart';
 
 class BroadcastState {
   final List<Broadcast> broadcasts;
   final Broadcast? currentBroadcast;
   final bool isPlaying;
-  final bool isLoading; // إضافة حقل isLoading
   final ProcessingState processingState;
   final Duration position;
   final Duration? duration;
@@ -15,7 +14,6 @@ class BroadcastState {
     required this.broadcasts,
     this.currentBroadcast,
     this.isPlaying = false,
-    this.isLoading = false, // قيمة افتراضية
     this.processingState = ProcessingState.idle,
     this.position = Duration.zero,
     this.duration,
@@ -28,38 +26,31 @@ class BroadcastState {
         id: '1',
         title: 'Tarateel',
         streamUrl: 'https://qurango.net/radio/tarateel',
-        // imageUrl: 'https://via.placeholder.com/150/FF6B6B/FFFFFF?text=نغم+FM',
       ),
       Broadcast(
         id: '2',
-        title: 'skynewsarabia',
-        streamUrl: 'https://radio.skynewsarabia.com/stream/radio/skynewsarabia',
-        // imageUrl: 'https://via.placeholder.com/150/4ECDC4/FFFFFF?text=مصر+9090',
+        title: 'Radio',
+        streamUrl: 'https://qurango.net/radio/tarateel',
       ),
       Broadcast(
         id: '3',
-        title: ' ONsport FM',
-        streamUrl: 'https://streema.com/radios/play/ONsport_FM',
-        // imageUrl: 'https://streema.com/radios/play/ONsport_FM',
+        title: ' Quran',
+        streamUrl: 'https://qurango.net/radio/tarateel',
       ),
       Broadcast(
         id: '4',
-        title: ' Holy Quran Radio',
-        streamUrl: 'https://streema.com/radios/Holy_Quran_Radio',
-        // imageUrl: 'https://streema.com/radios/Holy_Quran_Radio',
+        title: 'HolyQuran Radio',
+        streamUrl: 'https://qurango.net/radio/tarateel',
       ),
       Broadcast(
         id: '5',
-        title: 'Quran FM Telawa  ',
-        streamUrl: 'https://streema.com/radios/Quran_FM_Telawa',
-        // imageUrl: 'https://streema.com/radios/Quran_FM_Telawa',
+        title: 'Sky Arabia',
+        streamUrl: 'https://radio.skynewsarabia.com/stream/radio/skynewsarabia',
       ),
       Broadcast(
         id: '6',
-        title: 'zeno    ',
-        streamUrl: 'https://stream.zeno.fm/0r0xa792kwzuv',
-        // imageUrl:
-        //     'https://via.placeholder.com/150/BB8FCE/FFFFFF?text=مصر+الجديد',
+        title: 'News Arabia',
+        streamUrl: 'https://radio.skynewsarabia.com/stream/radio/skynewsarabia',
       ),
     ],
   );
@@ -68,7 +59,6 @@ class BroadcastState {
     List<Broadcast>? broadcasts,
     Broadcast? currentBroadcast,
     bool? isPlaying,
-    bool? isLoading, // إضافة isLoading إلى copyWith
     ProcessingState? processingState,
     Duration? position,
     Duration? duration,
@@ -78,7 +68,6 @@ class BroadcastState {
       broadcasts: broadcasts ?? this.broadcasts,
       currentBroadcast: currentBroadcast ?? this.currentBroadcast,
       isPlaying: isPlaying ?? this.isPlaying,
-      isLoading: isLoading ?? this.isLoading, // إضافة isLoading
       processingState: processingState ?? this.processingState,
       position: position ?? this.position,
       duration: duration ?? this.duration,

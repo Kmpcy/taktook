@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qemam_task/Features/Videos/model/video_model.dart';
-import 'package:qemam_task/Features/Videos/view/widgets/custom_video.dart';
-import 'package:qemam_task/Features/Videos/view_model/videos_cubit/videos_cubit.dart';
-import 'package:qemam_task/Features/Videos/view_model/videos_cubit/videos_state.dart';
+import 'package:qemam_task/Features/Broadcast/model/video_model.dart';
+import 'package:qemam_task/Features/Videos/presentation/widgets/custom_video.dart';
+import 'package:qemam_task/Features/Videos/presentation/videos_cubit/videos_cubit.dart';
+import 'package:qemam_task/Features/Videos/presentation/videos_cubit/videos_state.dart';
 import 'package:video_player/video_player.dart';
 
 class VideosPage extends StatefulWidget {
   const VideosPage({super.key});
 
   @override
-  State<VideosPage> createState() => _VideosPageState();
+  State<VideosPage> createState() => VideosPageState();
 }
 
-class _VideosPageState extends State<VideosPage> {
-  late PageController _pageController;
-  VideosCubit? _cubit;
+class VideosPageState extends State<VideosPage> {
+  late PageController pageController;
+  VideosCubit? cubit;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _cubit ??= context.read<VideosCubit>();
-    _pageController = PageController(initialPage: _cubit!.currentIndex);
+    cubit ??= context.read<VideosCubit>();
+    pageController = PageController(initialPage: cubit!.currentIndex);
 
-    final st = _cubit!.state;
+    final st = cubit!.state;
     if (st is! VideosLoaded && st is! VideosLoading) {
-      _cubit!.loadVideos(loadNextPage: false);
+      cubit!.loadVideos(loadNextPage: false);
     }
   }
 
   void _checkLoadMore(int index) {
-    final cubit = _cubit!;
+    final cubit = this.cubit!;
     final currentPageNumber = (index ~/ 10) + 1;
 
     if (index >= (currentPageNumber * 10 - 2) &&
@@ -44,7 +44,7 @@ class _VideosPageState extends State<VideosPage> {
 
   @override
   void dispose() {
-    _pageController.dispose();
+    pageController.dispose();
     super.dispose();
   }
 
@@ -55,14 +55,14 @@ class _VideosPageState extends State<VideosPage> {
         if (state is VideosLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is VideosLoaded) {
-          final cubit = _cubit!;
+          final cubit = this.cubit!;
           final totalItems = state.videos.length;
 
           return Stack(
             fit: StackFit.expand,
             children: [
               PageView.builder(
-                controller: _pageController,
+                controller: pageController,
                 scrollDirection: Axis.vertical,
                 itemCount: totalItems,
                 onPageChanged: (index) async {
@@ -86,8 +86,7 @@ class _VideosPageState extends State<VideosPage> {
                             maxHeight: MediaQuery.of(context).size.height,
                           ),
 
-                          // زرار الصوت
-                          Positioned(
+                           Positioned(
                             right: 12,
                             bottom: 120,
                             child: IconButton(
@@ -108,8 +107,7 @@ class _VideosPageState extends State<VideosPage> {
                 },
               ),
 
-              // ✅ Progress bar للصفحات + Video progress indicator
-              Positioned(
+               Positioned(
                 bottom: 12,
                 left: 0,
                 right: 0,
@@ -184,7 +182,7 @@ class _VideosPageState extends State<VideosPage> {
                 Text(state.message, style: const TextStyle(color: Colors.red)),
                 const SizedBox(height: 8),
                 ElevatedButton(
-                  onPressed: () => _cubit!.loadVideos(loadNextPage: false),
+                  onPressed: () => this.cubit!.loadVideos(loadNextPage: false),
                   child: const Text("Retry"),
                 ),
               ],

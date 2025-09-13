@@ -1,5 +1,4 @@
-// features/videos/viewmodel/videos_state.dart
-import 'package:qemam_task/Features/Videos/model/video_model.dart';
+ import 'package:qemam_task/Features/Broadcast/model/video_model.dart';
 
  
 abstract class VideosState {}
