@@ -86,7 +86,7 @@ class VideosPageState extends State<VideosPage> {
                             maxHeight: MediaQuery.of(context).size.height,
                           ),
 
-                           Positioned(
+                          Positioned(
                             right: 12,
                             bottom: 120,
                             child: IconButton(
@@ -107,7 +107,7 @@ class VideosPageState extends State<VideosPage> {
                 },
               ),
 
-               Positioned(
+              Positioned(
                 bottom: 12,
                 left: 0,
                 right: 0,
@@ -118,7 +118,6 @@ class VideosPageState extends State<VideosPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: Row(
                         children: List.generate(6, (segIndex) {
-                          final activeSeg = state.currentIndex ~/ 10;
                           double progress = 0.0;
                           final segStart = segIndex * 10;
                           final segEnd = segStart + 9;
@@ -131,8 +130,8 @@ class VideosPageState extends State<VideosPage> {
 
                           return Expanded(
                             child: Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 4),
+                              margin: const EdgeInsets.symmetric(horizontal: 4),
+
                               height: 6,
                               decoration: BoxDecoration(
                                 color: Colors.white24,
@@ -157,11 +156,13 @@ class VideosPageState extends State<VideosPage> {
                     const SizedBox(height: 6),
 
                     if (cubit.getControllerIfExists(
-                            state.videos[state.currentIndex].id) !=
+                          state.videos[state.currentIndex].id,
+                        ) !=
                         null)
                       VideoProgressIndicator(
                         cubit.getControllerIfExists(
-                            state.videos[state.currentIndex].id)!,
+                          state.videos[state.currentIndex].id,
+                        )!,
                         allowScrubbing: true,
                         colors: const VideoProgressColors(
                           playedColor: Colors.red,
